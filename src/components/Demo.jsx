@@ -120,9 +120,10 @@ function Demo() {
           >
             <DataGrid
               rows={rows2}
+              density="compact"
               columns={columns2}
               loading={isLoad}
-              density="compact"
+              
               getRowId={getRowId}
               pagination
               components={{ Toolbar: GridToolbar }}
