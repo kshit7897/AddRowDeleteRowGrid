@@ -9,7 +9,7 @@ function Demo() {
   const [rows, setRows] = useState([]);
   const [rows2, setRows2] = useState([]);
   const [isLoad, setIsLoad] = useState(true);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRow, setSelectedRow] = useState([]);
   // const [newRow, setNewRow] = useState({})
 
   const myStyles = {
@@ -49,6 +49,7 @@ function Demo() {
 
     const filteredRows = rows2.filter((row) => row.typE_SEQ === seQ_NO);
     setRows2(filteredRows);
+    console.log("kshit",filteredRows)
   };
 
   useEffect(() => {
@@ -123,7 +124,6 @@ function Demo() {
               density="compact"
               columns={columns2}
               loading={isLoad}
-              
               getRowId={getRowId}
               pagination
               components={{ Toolbar: GridToolbar }}
