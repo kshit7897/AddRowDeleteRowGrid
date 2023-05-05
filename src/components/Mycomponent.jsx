@@ -36,38 +36,6 @@ function MyComponent() {
     },
   ]);
 
-  const [newVData, setNewVData] = useState({
-    seQ_NO: "",
-    typE_SEQ: "",
-    parA_VALUE: "",
-    description: "",
-    caption: "",
-    shorT_VALUE: "",
-    nativE_VALUE: "",
-    g_PARA_VALUE_1: "",
-    g_PARA_VALUE_2: "",
-    iS_REQUIRED: "",
-    synonyM_LIST: "",
-    sorT_NO: "",
-    iS_ACTIVE: "",
-    filter: "",
-    tranS_TYPE: "INSERT",
-  });
-
-  const [newpData, setNewpData] = useState({
-    seQ_NO: "",
-    parA_TYPE: "",
-    nativE_VALUE: "",
-    description: "",
-    g_PARA_TYPE: "",
-    sorT_NO: "",
-    synonyM_LIST: "",
-    starT_NO: "",
-    enD_NO: "",
-    columN_NAME: "",
-    tranS_TYPE: "INSERT",
-  });
-
   function handleClick() {
     fetch("http://f10/api/ParaTypeDemo/CRUDParaValueType", {
       method: "POST",
@@ -81,166 +49,91 @@ function MyComponent() {
       .catch((error) => console.error(error));
   }
 
-  function handleNewVDataChange(event) {
-    const { name, value } = event.target;
-    setNewVData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  }
-
-  function handleNewpDataChange(event) {
-    const { name, value } = event.target;
-    setNewpData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  }
-
-  function handleAddVData() {
-    setVData((prevData) => [...prevData, newVData]);
-    setNewVData({
-      seQ_NO: "",
-      typE_SEQ: "",
-      parA_VALUE: "",
-      description: "",
-      caption: "",
-      shorT_VALUE: "",
-      nativE_VALUE: "",
-      g_PARA_VALUE_1: "",
-      g_PARA_VALUE_2: "",
-      iS_REQUIRED: "",
-      synonyM_LIST: "",
-      sorT_NO: "",
-      iS_ACTIVE: "",
-      filter: "",
-      tranS_TYPE: "INSERT",
-    });
-  }
-
   return (
     <div>
-      <div>
-        <h2>Add New vData Item</h2>
-        <form>
-          <label>seQ_NO:</label>
-          <input
-            type="text"
-            name="seQ_NO"
-            value={newVData.seQ_NO}
-            onChange={handleNewVDataChange}
-          />
-          <label>typE_SEQ:</label>
-          <input
-            type="text"
-            name="typE_SEQ"
-            value={newVData.typE_SEQ}
-            onChange={handleNewVDataChange}
-          />
-          <label>parA_VALUE:</label>
-          <input
-            type="text"
-            name="parA_VALUE"
-            value={newVData.parA_VALUE}
-            onChange={handleNewVDataChange}
-          />
-          <label>description:</label>
-          <input
-            type="text"
-            name="description"
-            value={newVData.description}
-            onChange={handleNewVDataChange}
-          />
-          <label>caption:</label>
-          <input
-            type="text"
-            name="caption"
-            value={newVData.caption}
-            onChange={handleNewVDataChange}
-          />
-          <label>shorT_VALUE:</label>
-          <input
-            type="text"
-            name="shorT_VALUE"
-            value={newVData.shorT_VALUE}
-            onChange={handleNewVDataChange}
-          />
-          <label>nativE_VALUE:</label>
-          <input
-            type="text"
-            name="nativE_VALUE"
-            value={newVData.nativE_VALUE}
-            onChange={handleNewVDataChange}
-          />
-          <label>g_PARA_VALUE_1:</label>
-          <input
-            type="text"
-            name="g_PARA_VALUE_1"
-            value={newVData.g_PARA_VALUE_1}
-            onChange={handleNewVDataChange}
-          />
-          <label>g_PARA_VALUE_2:</label>
-          <input
-            type="text"
-            name="g_PARA_VALUE_2"
-            value={newVData.g_PARA_VALUE_2}
-            onChange={handleNewVDataChange}
-          />
-          <label>iS_REQUIRED:</label>
-          <input
-            type="text"
-            name="iS_REQUIRED"
-            value={newVData.iS_REQUIRED}
-            onChange={handleNewVDataChange}
-          />
-          <label>synonyM_LIST:</label>
-          <input
-            type="text"
-            name="synonyM_LIST"
-            value={newVData.synonyM_LIST}
-            onChange={handleNewVDataChange}
-          />
-          <label>sorT_NO:</label>
-          <input
-            type="text"
-            name="sorT_NO"
-            value={newVData.sorT_NO}
-            onChange={handleNewVDataChange}
-          />
-          <label>iS_ACTIVE:</label>
-          <input
-            type="text"
-            name="iS_ACTIVE"
-            value={newVData.iS_ACTIVE}
-            onChange={handleNewVDataChange}
-          />
-          <label>filter:</label>
-          <input
-            type="text"
-            name="filter"
-            value={newVData.filter}
-            onChange={handleNewVDataChange}
-          />
-        </form>
-        <button onClick={handleAddVData}>Add New vData Item</button>
+      <button onClick={handleClick}>Submit</button>
+      {/* <div>
+        <h2>pData Grid</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>seQ_NO</th>
+              <th>parA_TYPE</th>
+              <th>nativE_VALUE</th>
+              <th>description</th>
+              <th>g_PARA_TYPE</th>
+              <th>sorT_NO</th>
+              <th>synonyM_LIST</th>
+              <th>starT_NO</th>
+              <th>enD_NO</th>
+              <th>columN_NAME</th>
+              <th>tranS_TYPE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{pData.seQ_NO}</td>
+              <td>{pData.parA_TYPE}</td>
+              <td>{pData.nativE_VALUE}</td>
+              <td>{pData.description}</td>
+              <td>{pData.g_PARA_TYPE}</td>
+              <td>{pData.sorT_NO}</td>
+              <td>{pData.synonyM_LIST}</td>
+              <td>{pData.starT_NO}</td>
+              <td>{pData.enD_NO}</td>
+              <td>{pData.columN_NAME}</td>
+              <td>{pData.tranS_TYPE}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div>
-        <h2>pData</h2>
-        <p>{JSON.stringify(pData)}</p>
-      </div>
-      <div>
-        <h2>vData</h2>
-        <ul>
-          {vData.map((data) => (
-            <li key={data.seQ_NO}>{JSON.stringify(data)}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Submit Data</h2>
-        <button onClick={handleClick}>Submit</button>
-      </div>
+        <h2>vData Grid</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>seQ_NO</th>
+              <th>typE_SEQ</th>
+              <th>parA_VALUE</th>
+              <th>description</th>
+              <th>caption</th>
+              <th>shortT_VALUE</th>
+              <th>nativE_VALUE</th>
+              <th>g_PARA_VALUE_1</th>
+              <th>g_PARA_VALUE_2</th>
+              <th>iS_REQUIRED</th>
+              <th>synonyM_LIST</th>
+              <th>sorT_NO</th>
+              <th>iS_ACTIVE</th>
+              <th>filter</th>
+              <th>tranS_TYPE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {vData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.seQ_NO}</td>
+                <td>{item.typE_SEQ}</td>
+                <td>{item.parA_VALUE}</td>
+                <td>{item.description}</td>
+                <td>{item.caption}</td>
+                <td>{item.shorT_VALUE}</td>
+                <td>{item.nativE_VALUE}</td>
+                <td>{item.g_PARA_VALUE_1}</td>
+                <td>{item.g_PARA_VALUE_2}</td>
+                <td>{item.iS_REQUIRED}</td>
+                <td>{item.synonyM_LIST}</td>
+                <td>{item.sorT_NO}</td>
+                <td>{item.iS_ACTIVE}</td>
+                <td>{item.filter}</td>
+                <td>{item.tranS_TYPE}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div> */}
     </div>
   );
 }
+
 export default MyComponent;
