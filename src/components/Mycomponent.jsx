@@ -52,7 +52,7 @@ function MyComponent() {
   return (
     <div>
       <button onClick={handleClick}>Submit</button>
-      {/* <div>
+      <div>
         <h2>pData Grid</h2>
         <table>
           <thead>
@@ -131,7 +131,7 @@ function MyComponent() {
             ))}
           </tbody>
         </table>
-      </div> */}
+      </div>
     </div>
   );
 }

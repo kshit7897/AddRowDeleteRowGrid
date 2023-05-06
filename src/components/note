@@ -1,0 +1,84 @@
+// ==============================post API============================================
+
+const [pData, setPData] = useState({
+  seQ_NO: "0",
+  parA_TYPE: "TEST",
+  nativE_VALUE: "TEST",
+  description: "TEST",
+  g_PARA_TYPE: "TEST",
+  sorT_NO: "1",
+  synonyM_LIST: "",
+  starT_NO: "",
+  enD_NO: "",
+  columN_NAME: "",
+  tranS_TYPE: "INSERT",
+});
+
+const [vData, setVData] = useState([
+  {
+    seQ_NO: "0",
+    typE_SEQ: "0",
+    parA_VALUE: "T1",
+    description: "T1",
+    caption: "T1",
+    shorT_VALUE: "T1",
+    nativE_VALUE: "T1",
+    g_PARA_VALUE_1: "T1",
+    g_PARA_VALUE_2: "T1",
+    iS_REQUIRED: "",
+    synonyM_LIST: "",
+    sorT_NO: "1",
+    iS_ACTIVE: "",
+    filter: "",
+    tranS_TYPE: "INSERT",
+  },
+]);
+
+function handleClick() {
+  fetch("http://f10/api/ParaTypeDemo/CRUDParaValueType", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ pData, vData }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+}
+// ====================================================================================
+
+//   after click Rerender the data
+
+const handleSubmit = () => {
+  axios
+    .post("http://f10/api/ParaTypeDemo/CRUDParaValueType", {
+      value1,
+      value2,
+    })
+    .then(() => {
+      axios
+        .get("http://f10/api/ParaTypeDemo/GetParaTypeMas")
+        .then((res) => {
+          setRows(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      axios
+        .get("http://f10/api/ParaTypeDemo/GetParaValueMas")
+        .then((res) => {
+          setRows2(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      setValue1("");
+      setValue2("");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

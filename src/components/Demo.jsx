@@ -2,14 +2,15 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import Box from "@mui/material/Box";
 
-function Demo() {
+import "./grid.css";
+
+const Demo = () => {
   const [rows, setRows] = useState([]);
   const [rows2, setRows2] = useState([]);
   const [isLoad, setIsLoad] = useState(true);
-  const [selectedRow, setSelectedRow] = useState([]);
-  // const [newRow, setNewRow] = useState({})
+  const [selectedRow, setSelectedRow] = useState(null);
+  const getRowId2 = (row) => row.seQ_NO;
 
   const myStyles = {
     backgroundColor: "skyBlue",
@@ -48,7 +49,6 @@ function Demo() {
 
     const filteredRows = rows2.filter((row) => row.typE_SEQ === seQ_NO);
     setRows2(filteredRows);
-    console.log("kshit", filteredRows);
   };
 
   useEffect(() => {
@@ -70,7 +70,7 @@ function Demo() {
     }
   }, [selectedRow]);
 
-  // ==============================post API============================================
+  // ===========================================================================
 
   const [pData, setPData] = useState({
     seQ_NO: "0",
@@ -130,7 +130,7 @@ function Demo() {
   ];
 
   const columns2 = [
-    { field: "parA_VALUE", headerName: "Value", flex: 1, editable: true },
+    { field: "parA_VALUE", headerName: "Value", flex: 1 },
     { field: "description", headerName: "Description", flex: 1 },
     { field: "caption", headerName: "Caption", flex: 1 },
     { field: "shorT_VALUE", headerName: "Short Name", flex: 1 },
@@ -142,46 +142,32 @@ function Demo() {
   ];
 
   return (
-    <>
-      <button onClick={handleClick}>Submit</button>
-      <Box>
-        <div className="table">
-          <h4 style={myStyles}>Parameter Type</h4>
-          <div
-            className="datatable-container"
-            style={{ height: 350, width: "100%" }}
-          >
-            <DataGrid
-              rows={rows}
-              density="compact"
-              columns={columns}
-              loading={isLoad}
-              getRowId={getRowId}
-              onRowClick={handleRowClick}
-              components={{ Toolbar: GridToolbar }}
-            />
-          </div>
-        </div>
-        <div className="table">
-          <h4 style={myStyles}>Parameter Value</h4>
-          <div
-            className="datatable-container"
-            style={{ height: 350, width: "100%" }}
-          >
-            <DataGrid
-              rows={rows2}
-              density="compact"
-              columns={columns2}
-              loading={isLoad}
-              getRowId={getRowId}
-              pagination
-              components={{ Toolbar: GridToolbar }}
-            />
-          </div>
-        </div>
-      </Box>
-    </>
+    <div style={{ height: 400, width: "100%" }}>
+      <h2 style={myStyles}>Parameter Type Master</h2>
+      <DataGrid
+        rows={rows}
+        density="compact"
+        columns={columns}
+        getRowId={getRowId}
+        onRowClick={handleRowClick}
+        loading={isLoad}
+        components={{
+          Toolbar: GridToolbar,
+        }}
+      />
+      <h2 style={myStyles}>Parameter Value Master</h2>
+      <DataGrid
+        rows={rows2}
+        density="compact"
+        columns={columns2}
+        getRowId={getRowId2}
+        loading={isLoad}
+        components={{
+          Toolbar: GridToolbar,
+        }}
+      />
+    </div>
   );
-}
+};
 
 export default Demo;
